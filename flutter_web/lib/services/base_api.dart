@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_base_api/services/dio_service.dart';
-import 'package:flutter_base_api/utility/string_url_extension.dart';
-import 'package:flutter_base_api/utility/string_file_extension.dart';
+import 'package:flutter_web/services/dio_service.dart';
+import 'package:flutter_web/utility/string_url_extension.dart';
+import 'package:flutter_web/utility/string_file_extension.dart';
 
 /// How to use:
 /// ```dart

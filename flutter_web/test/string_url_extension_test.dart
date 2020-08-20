@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_base_api/utility/string_url_extension.dart';
+import 'package:flutter_web/utility/string_url_extension.dart';
 
 void main() {
   group('removeUrlScheme', () {

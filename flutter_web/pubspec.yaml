@@ -1,4 +1,4 @@
-name: flutter_base_api
+name: flutter_web
 description: Package to provide the default way to perform web requests in our flutter apps.
 version: 0.0.1
 author:
