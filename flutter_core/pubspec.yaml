@@ -1,0 +1,23 @@
+name: flutter_core
+description: A new Flutter package project.
+version: 0.0.2
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  intl:
+  flutter_platform_widgets:
+  # path: /Users/entwickler-einsintersolute/Downloads/flutter_platform_widgets_fork
+    # git:
+      # url: git://github.com/aqwert/flutter_platform_widgets.git
+      # ref: beta
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:

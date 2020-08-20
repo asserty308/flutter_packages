@@ -1,0 +1,22 @@
+name: flutter_base_api
+description: Package to provide the default way to perform web requests in our flutter apps.
+version: 0.0.1
+author:
+homepage:
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  dio_cookie_manager:
+  path_provider:
+  connectivity:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
