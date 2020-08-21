@@ -27,9 +27,10 @@ class BaseApi {
 
   DioService _dio = DioService();
 
-  /// Uses a POST request to send any data data to an url.
+  /// Uses a POST or GET request to send any data data to an url.
   /// Throws an Exception when an error occures.
-  Future<dynamic> doRequest(String urlPath, {dynamic data, Map<String, dynamic> headers, Map<String, dynamic> query, bool isPOST = false}) async {
+  /// Throws an Exception when the response is not JSON.
+  Future<dynamic> requestJSON(String urlPath, {dynamic data, Map<String, dynamic> headers, Map<String, dynamic> query, bool isPOST = false}) async {
     await _dio.init();
 
     // update path when a default path is available
@@ -50,7 +51,7 @@ class BaseApi {
 
     final dataStr = response.data.toString();
 
-    if (!dataStr.startsWith('{')) {
+    if (!dataStr.startsWith('{') && !dataStr.startsWith('[')) {
       print('Unexpected response from $urlPath: $dataStr');
       throw Exception('Unexpected response');
     }
@@ -71,6 +72,6 @@ class BaseApi {
       'file': multipartFile,
     });
 
-    return await doRequest(urlPath, data: data, headers: headers, query: query);
+    return await requestJSON(urlPath, data: data, headers: headers, query: query);
   }
 }
