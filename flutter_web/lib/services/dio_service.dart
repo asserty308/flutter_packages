@@ -34,6 +34,19 @@ class DioService {
     _dio.interceptors.add(manager);
   }
 
+  Future<dynamic> request(String path, {dynamic data, Map<String, dynamic> queryParameters, Options options, bool isPOST = false}) async {
+    if (isPOST) {
+      return post(path, data: data, queryParameters: queryParameters, options: options);
+    }
+
+    return get(path, queryParameters: queryParameters, options: options);
+  }
+
+  /// Wrapper for dio.get
+  Future<dynamic> get(String path, {Map<String, dynamic> queryParameters, Options options}) async {
+    return await _dio.get(path, queryParameters: queryParameters, options: options);
+  }
+
   /// Wrapper for dio.post
   Future<dynamic> post(String path, {dynamic data, Map<String, dynamic> queryParameters, Options options}) async {
     return await _dio.post(path, data: data, queryParameters: queryParameters, options: options);

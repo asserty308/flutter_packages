@@ -29,7 +29,7 @@ class BaseApi {
 
   /// Uses a POST request to send any data data to an url.
   /// Throws an Exception when an error occures.
-  Future<dynamic> postData(String urlPath, {dynamic data, Map<String, dynamic> headers, Map<String, dynamic> query}) async {
+  Future<dynamic> doRequest(String urlPath, {dynamic data, Map<String, dynamic> headers, Map<String, dynamic> query, bool isPOST = false}) async {
     await _dio.init();
 
     // update path when a default path is available
@@ -40,7 +40,7 @@ class BaseApi {
       headers: headers,
     );
 
-    final response = await _dio.post(url, data: data, options: options, queryParameters: query);
+    final response = await _dio.request(url, data: data, options: options, queryParameters: query, isPOST: isPOST);
     final statusCode = response?.statusCode ?? 0;
 
     if (statusCode != 200) {
@@ -71,6 +71,6 @@ class BaseApi {
       'file': multipartFile,
     });
 
-    return await postData(urlPath, data: data, headers: headers, query: query);
+    return await doRequest(urlPath, data: data, headers: headers, query: query);
   }
 }
