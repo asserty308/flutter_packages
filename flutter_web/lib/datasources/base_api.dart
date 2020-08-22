@@ -10,7 +10,7 @@ import 'package:flutter_web/utility/string_file_extension.dart';
 ///   ...
 /// }
 /// ```
-class BaseApi {
+abstract class BaseApi {
   BaseApi(String baseUrl, {this.forceHttp = false}) {
     // baseUrl is not allowed to contain http[s] prefix
     final tmpUrl = baseUrl.removeUrlScheme();
