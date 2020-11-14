@@ -11,9 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  dio_cookie_manager:
-  path_provider:
-  connectivity:
+  dio_cookie_manager: ^1.0.0
+  path_provider: ^1.6.24
+  connectivity: ^2.0.1
 
 dev_dependencies:
   flutter_test:

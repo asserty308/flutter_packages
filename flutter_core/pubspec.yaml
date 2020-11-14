@@ -9,8 +9,8 @@ dependencies:
   flutter:
     sdk: flutter
   
-  intl:
-  flutter_platform_widgets:
+  intl: ^0.16.1
+  flutter_platform_widgets: ^0.70.2
   # path: /Users/entwickler-einsintersolute/Downloads/flutter_platform_widgets_fork
     # git:
       # url: git://github.com/aqwert/flutter_platform_widgets.git
