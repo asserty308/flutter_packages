@@ -6,10 +6,10 @@ import 'package:connectivity/connectivity.dart';
 /// After creating an instance you can get the current status by calling [currentStatus].
 class ConnectivityService {
   final Connectivity _connectivity = Connectivity();
-  StreamSubscription<ConnectivityResult> _connectivitySubscription;
-  ConnectivityResult _result;
+  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
+  ConnectivityResult? _result;
 
-  ConnectivityListener listener;
+  ConnectivityListener? listener;
 
   void cancel() => _connectivitySubscription.cancel();
 
@@ -30,7 +30,7 @@ class ConnectivityService {
     listener?.onConnectivityChanged(result);
   }
 
-  Future<ConnectivityResult> get currentStatus async { 
+  Future<ConnectivityResult?> get currentStatus async { 
     if (_result == null) {
       await _init();
     }

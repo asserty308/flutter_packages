@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DioService {
-  Dio _dio;
+  late Dio _dio;
   bool dioInitialized = false;
 
   /// Initializes dio only once per session
@@ -27,14 +27,13 @@ class DioService {
       return;
     }
 
-    final appDocDir = await getApplicationDocumentsDirectory();
-    final cookieJar = PersistCookieJar(dir: appDocDir.path + '/.cookies/');
+    final cookieJar = PersistCookieJar();
     final manager = CookieManager(cookieJar);
 
     _dio.interceptors.add(manager);
   }
 
-  Future<dynamic> request(String path, {dynamic data, Map<String, dynamic> queryParameters, Options options, bool isPOST = false}) async {
+  Future<dynamic> request(String path, {dynamic data, Map<String, dynamic>? queryParameters, Options? options, bool isPOST = false}) async {
     if (isPOST) {
       return post(path, data: data, queryParameters: queryParameters, options: options);
     }
@@ -43,12 +42,12 @@ class DioService {
   }
 
   /// Wrapper for dio.get
-  Future<dynamic> get(String path, {Map<String, dynamic> queryParameters, Options options}) async {
+  Future<dynamic> get(String path, {Map<String, dynamic>? queryParameters, Options? options}) async {
     return await _dio.get(path, queryParameters: queryParameters, options: options);
   }
 
   /// Wrapper for dio.post
-  Future<dynamic> post(String path, {dynamic data, Map<String, dynamic> queryParameters, Options options}) async {
+  Future<dynamic> post(String path, {dynamic data, Map<String, dynamic>? queryParameters, Options? options}) async {
     return await _dio.post(path, data: data, queryParameters: queryParameters, options: options);
   }
 }

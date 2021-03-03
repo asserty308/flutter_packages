@@ -22,7 +22,7 @@ abstract class BaseApi {
   
   final bool forceHttp;
 
-  String _baseUrl;
+  late String _baseUrl;
   String _defaultPath = '';
 
   DioService _dio = DioService();
@@ -30,7 +30,7 @@ abstract class BaseApi {
   /// Uses a POST or GET request to send any data data to an url.
   /// Throws an Exception when an error occures.
   /// Throws an Exception when the response is not JSON.
-  Future<dynamic> requestJSON(String urlPath, {dynamic data, Map<String, dynamic> headers, Map<String, dynamic> query, bool isPOST = false}) async {
+  Future<dynamic> requestJSON(String urlPath, {dynamic data, Map<String, dynamic>? headers, Map<String, dynamic>? query, bool isPOST = false}) async {
     await _dio.init();
 
     // update path when a default path is available
@@ -62,7 +62,7 @@ abstract class BaseApi {
   /// Uploads a file to an URL by using [FormData].
   /// Throws an Exception when an error occures.
   /// On PHP the uploaded file can be accessed with $_FILES['file'].
-  Future<dynamic> postFile(String urlPath, String filePath, {Map<String, dynamic> query, Map<String, dynamic> headers}) async {
+  Future<dynamic> postFile(String urlPath, String filePath, {Map<String, dynamic>? query, Map<String, dynamic>? headers}) async {
     // Get filename from path and remove whitespace from filename before upload
     String fileName = filePath.filenameFromPath(true);
 
