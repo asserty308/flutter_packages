@@ -1,19 +1,16 @@
 name: flutter_core
 description: A new Flutter package project.
-version: 0.0.2
+version: 0.0.3
 publish_to: none
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
   
-  intl: ^0.16.1
-  flutter_platform_widgets:
-    git:
-      url: git://github.com/stryder-dev/flutter_platform_widgets.git
-      ref: beta
+  flutter_platform_widgets: ^1.0.1-nullsafety.0
+  intl: ^0.17.0
 
 flutter:

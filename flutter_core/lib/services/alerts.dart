@@ -4,14 +4,14 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 class AlertService {
   /// Returns the text entered in the input field
   /// [withError] only works on Android
-  Future<String> showInputDialog(BuildContext context, {String title, String inputHint, String initialText = '', String withError = ''}) async {
-    String inputText;
+  Future<String?> showInputDialog(BuildContext context, {String? title, String? inputHint, String initialText = '', String withError = ''}) async {
+    String? inputText;
 
     return showDialog<String>(
       context: context,
       builder: (context) {
         return PlatformAlertDialog(
-          title: Text(title),
+          title: Text(title!),
           content: PlatformTextField(
             autofocus: true,
             controller: TextEditingController(
@@ -58,7 +58,7 @@ class AlertService {
     ]);
   }
 
-  Future<bool> showYesNoDialog(BuildContext context, String title, String content) {
+  Future<bool?> showYesNoDialog(BuildContext context, String title, String content) {
     return showDialog<bool>(
       context: context,
       builder: (context) {
@@ -96,7 +96,7 @@ class AlertService {
     );
   }
 
-  void showTextSnackbar(BuildContext context, {String message, Color backgroundColor}) {
+  void showTextSnackbar(BuildContext context, {required String message, Color? backgroundColor}) {
     Scaffold.of(context)
       .showSnackBar(
         SnackBar(
@@ -106,8 +106,8 @@ class AlertService {
       );
   }
 
-  void showTextSnackbarWithKey(GlobalKey<ScaffoldState> key, {String message, Color backgroundColor}) {
-    key.currentState.showSnackBar(
+  void showTextSnackbarWithKey(GlobalKey<ScaffoldState> key, {required String message, Color? backgroundColor}) {
+    key.currentState!.showSnackBar(
       SnackBar(
         content: Text(message),
         backgroundColor: backgroundColor,
@@ -115,7 +115,7 @@ class AlertService {
     );
   }
 
-  void showActionSnackbar(BuildContext context, {String message, Color backgroundColor, String actionLabel, Color actionTextColor, Function onActionPressed}) {
+  void showActionSnackbar(BuildContext context, {required String message, Color? backgroundColor, required String actionLabel, Color? actionTextColor, required Function onActionPressed}) {
     Scaffold.of(context)
       .showSnackBar(
         SnackBar(
@@ -124,13 +124,13 @@ class AlertService {
           action: SnackBarAction(
             label: actionLabel,
             textColor: actionTextColor ?? Colors.blue,
-            onPressed: onActionPressed,
+            onPressed: onActionPressed as void Function(),
           ),
         ),
       );
   }
 
-  Future<TimeOfDay> showTimePicker24({BuildContext context, TimeOfDay initialTime}) async {
+  Future<TimeOfDay?> showTimePicker24({required BuildContext context, required TimeOfDay initialTime}) async {
     return showTimePicker(
       context: context,
       initialTime: initialTime,
@@ -138,7 +138,7 @@ class AlertService {
         // enable use24HourFormat
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-          child: child,
+          child: child!,
         );
       },
     );
