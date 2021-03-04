@@ -27,10 +27,10 @@ class DioService {
       return;
     }
 
-    final appDocDir = await getApplicationDocumentsDirectory();
+    // final appDocDir = await getApplicationDocumentsDirectory();
     final cookieJar = PersistCookieJar(
-      //storage: FileStorage(appDocDir.path + '/.cookies/')
-      dir: appDocDir.path + '/.cookies/'
+      // storage: FileStorage(appDocDir.path + '/.cookies/')
+      // dir: appDocDir.path + '/.cookies/'
     );
     final manager = CookieManager(cookieJar);
 
