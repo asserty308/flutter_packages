@@ -1,11 +1,15 @@
 import 'package:intl/intl.dart';
 
 extension DateFormatExt on DateFormat {
-  DateTime? tryParse(String input) {
+  DateTime? tryParse(String? input) {
+    if (input == null || input.isEmpty || input == 'null') {
+      return null;
+    }
+    
     try {
       return this.parse(input);
     } catch (e) {
-      print('Unable to parse $input');
+      print('DateFormatExt::tryParse Unable to parse $input');
       return null;
     }
   }

@@ -27,7 +27,11 @@ class DioService {
       return;
     }
 
-    final cookieJar = PersistCookieJar();
+    final appDocDir = await getApplicationDocumentsDirectory();
+    final cookieJar = PersistCookieJar(
+      //storage: FileStorage(appDocDir.path + '/.cookies/')
+      dir: appDocDir.path + '/.cookies/'
+    );
     final manager = CookieManager(cookieJar);
 
     _dio.interceptors.add(manager);

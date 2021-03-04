@@ -10,7 +10,7 @@ import 'package:flutter_web/utility/string_file_extension.dart';
 ///   ...
 /// }
 /// ```
-abstract class BaseApi {
+class BaseApi {
   BaseApi(String baseUrl, {this.forceHttp = false}) {
     // baseUrl is not allowed to contain http[s] prefix
     final tmpUrl = baseUrl.removeUrlScheme();
@@ -21,11 +21,10 @@ abstract class BaseApi {
   }
   
   final bool forceHttp;
+  final DioService _dio = DioService();
 
   late String _baseUrl;
   String _defaultPath = '';
-
-  DioService _dio = DioService();
 
   /// Uses a POST or GET request to send any data data to an url.
   /// Throws an Exception when an error occures.
@@ -63,7 +62,12 @@ abstract class BaseApi {
   /// Throws an Exception when an error occures.
   /// On PHP the uploaded file can be accessed with $_FILES['file'].
   Future<dynamic> postFile(String urlPath, String filePath, {Map<String, dynamic>? query, Map<String, dynamic>? headers}) async {
-    // Get filename from path and remove whitespace from filename before upload
+    final data = await getFileFormData(filePath);
+    return await requestJSON(urlPath, data: data, headers: headers, query: query, isPOST: true);
+  }
+
+  Future<dynamic> getFileFormData(String filePath) async {
+    // Get filename from path and remove whitespace from filename
     String fileName = filePath.filenameFromPath(true);
 
     final multipartFile = await MultipartFile.fromFile(filePath, filename: fileName);
@@ -72,6 +76,6 @@ abstract class BaseApi {
       'file': multipartFile,
     });
 
-    return await requestJSON(urlPath, data: data, headers: headers, query: query);
+    return data;
   }
 }

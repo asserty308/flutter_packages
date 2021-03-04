@@ -9,7 +9,12 @@ class ConnectivityService {
   late StreamSubscription<ConnectivityResult> _connectivitySubscription;
   ConnectivityResult? _result;
 
-  ConnectivityListener? listener;
+  final StreamController<bool> _connectivityStreamController = StreamController<bool>.broadcast();
+  Stream<bool> get connectivityStream => _connectivityStreamController.stream;
+
+  ConnectivityService() {
+    _init();
+  }
 
   void cancel() => _connectivitySubscription.cancel();
 
@@ -27,7 +32,7 @@ class ConnectivityService {
   void updateStatus(ConnectivityResult result) {
     print('Connectivity status changed from $_result to $result');
     _result = result;
-    listener?.onConnectivityChanged(result);
+    _connectivityStreamController.add(result != ConnectivityResult.none);
   }
 
   Future<ConnectivityResult?> get currentStatus async { 
@@ -39,8 +44,4 @@ class ConnectivityService {
   }
 
   Future<bool> get hasConnection async => await currentStatus != ConnectivityResult.none; 
-}
-
-abstract class ConnectivityListener {
-  void onConnectivityChanged(ConnectivityResult result);
 }

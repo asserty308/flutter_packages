@@ -32,7 +32,7 @@ class AlertService {
           ),
           actions: <PlatformDialogAction>[
             PlatformDialogAction(
-              child: PlatformText('Cancel'),
+              child: PlatformText('Abbrechen'),
               onPressed: () => Navigator.of(context).pop()
             ),
             PlatformDialogAction(
@@ -49,8 +49,8 @@ class AlertService {
     );
   }
 
-  void showDismissDialog(BuildContext context, String title, String content) {
-    showActionsDialog(context, title, content, <PlatformDialogAction>[
+  Future<void> showDismissDialog(BuildContext context, String title, String content) async {
+    return showActionsDialog(context, title, content, <PlatformDialogAction>[
       PlatformDialogAction(
         child: PlatformText('OK'), 
         onPressed: () => Navigator.of(context).pop(),
@@ -97,7 +97,7 @@ class AlertService {
   }
 
   void showTextSnackbar(BuildContext context, {required String message, Color? backgroundColor}) {
-    Scaffold.of(context)
+    ScaffoldMessenger.of(context)
       .showSnackBar(
         SnackBar(
           content: Text(message),
@@ -106,7 +106,7 @@ class AlertService {
       );
   }
 
-  void showTextSnackbarWithKey(GlobalKey<ScaffoldState> key, {required String message, Color? backgroundColor}) {
+  void showTextSnackbarWithKey(GlobalKey<ScaffoldMessengerState> key, {required String message, Color? backgroundColor}) {
     key.currentState!.showSnackBar(
       SnackBar(
         content: Text(message),
@@ -116,7 +116,7 @@ class AlertService {
   }
 
   void showActionSnackbar(BuildContext context, {required String message, Color? backgroundColor, required String actionLabel, Color? actionTextColor, required Function onActionPressed}) {
-    Scaffold.of(context)
+    ScaffoldMessenger.of(context)
       .showSnackBar(
         SnackBar(
           content: Text(message),
