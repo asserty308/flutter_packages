@@ -16,7 +16,7 @@ dependencies:
       path: flutter_core
 
   connectivity: ^3.0.2
-  dio_cookie_manager: ^1.0.0
+  dio_cookie_manager: ^2.0.0-beta1 
   path_provider: ^2.0.1
 
 dev_dependencies:
